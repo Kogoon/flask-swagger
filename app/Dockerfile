@@ -9,8 +9,8 @@ RUN apt install -y mysql-client
 RUN apt install -y libffi-dev
 
 # Setup Workdirectory
-COPY . /api
-WORKDIR /api
+COPY . /app
+WORKDIR /app
 
 # /app to Python
 ENV PYTHONPATH=/api

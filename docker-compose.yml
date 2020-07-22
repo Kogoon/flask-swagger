@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  app:
+    restart: "on-failure"
+    build: ./app
+    environment:
+      - TZ=Asia/Seoul
+      - MYSQL_DB_HOST=db
+      - MYSQL_DB_USER=admin
+      - MYSQL_DB_PASSWORD=password
+      - MYSQL_DB_DATABASE=service
+    ports:
+      - '5000:5000'
+    links:
+      - db
+
+  db:
+    restart: always
+    image: mysql:5.7
+    environment:
+      - MYSQL_DATABASE=service
+      - MYSQL_USER=admin
+      - MYSQL_PASSWORD=password
+    volumes:
+      - ./mysql:/var/lib/mysql
